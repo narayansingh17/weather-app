@@ -8,3 +8,5 @@ Commit 2: Fetched the api from weather-api and checked if it is working.
     i) Learning the structure of how API call works by reading documentation of weatherapi. It's important to check the example given by them before starting to write the code.
     ii) A bit about request block, I've got to understand it in a deeper way.
   Now i have to render this data on the page and make the next features. Later, I'll have to handle errors.
+
+  Commit 3: Designed the UI on which the weather appears. It is almost funtional now with just some more patches and features to add.

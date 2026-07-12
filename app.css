@@ -1,6 +1,7 @@
 body{
   background-color: rgb(234, 234, 234);
   font-family: Roboto Condensed;
+  padding-bottom: 1000px;
 }
 
 .header{
@@ -43,7 +44,7 @@ body{
   justify-content: center;
   align-items: center; 
   padding: 50px;
-  padding-top: 150px;   
+  padding-top: 120px;   
 }
 .search-bar{
   width: 600px;
@@ -52,4 +53,49 @@ body{
   border-radius: 25px;
   padding-left: 15px;
   font-size: 20px;
+  box-shadow: 2px 2px 5px grey;
+}
+.search-area{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20px;
+  
+}
+.search-button{
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 25px;
+  background-color: white;
+  box-shadow: 2px 2px 5px grey;
+  cursor: pointer;
+}
+
+.weather{
+  border: none;
+  display: grid;
+  width: 650px;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 50px;
+  row-gap: 50px;
+  place-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.weather div{
+  border: none;
+  height: 130px;
+  width: 300px;
+  background-color: white ;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px grey;
+  display: flex;
+  padding-left: 5px;
+  flex-direction: column;
+  font-size: 20px;
+}
+.weather div span{
+  font-size: 30px;
+  font-weight: bolder;
 }
