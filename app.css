@@ -1,5 +1,5 @@
 body{
-  background-color: rgb(234, 234, 234);
+  background-image: linear-gradient(to bottom, rgba(234, 240, 254), #a1cfff);
   font-family: Roboto Condensed;
   padding-bottom: 1000px;
 }
@@ -16,8 +16,8 @@ body{
   top: 0;
   left: 0;
   right: 0;
-  background-color: rgb(146, 146, 146);
-  box-shadow: 0px 2px 15px  black;
+  background-color: rgba(255, 255, 255);
+  box-shadow: 0px 1px 5px  rgba(0, 0, 0, 0.3);
 }
 .icon{
   height: 50%;
@@ -37,6 +37,8 @@ body{
 }
 .welcome{
   font-size: 50px;
+  font-weight: 500;
+  margin-bottom: 20px;
 }
 .search{
   display: flex;
@@ -53,7 +55,8 @@ body{
   border-radius: 25px;
   padding-left: 15px;
   font-size: 20px;
-  box-shadow: 2px 2px 5px grey;
+  box-shadow: 0px 1px 5px  rgba(0, 0, 0, 0.3);
+  transition: .2s;
 }
 .error-message{
   color: red;
@@ -71,34 +74,44 @@ body{
   border: none;
   border-radius: 25px;
   background-color: white;
-  box-shadow: 2px 2px 5px grey;
+  box-shadow: 0px 1px 5px  rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
 
 .weather{
   border: none;
   display: grid;
-  width: 650px;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 50px;
+  width: 900px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 20px;
   row-gap: 50px;
   place-items: center;
   margin-left: auto;
   margin-right: auto;
 }
-.weather div{
+.tile{
   border: none;
   height: 130px;
-  width: 300px;
+  width: 200px;
   background-color: white ;
   border-radius: 10px;
-  box-shadow: 2px 2px 5px grey;
+  box-shadow: 0px 1px 5px  rgba(0, 0, 0, 0.3);
   display: flex;
   padding-left: 5px;
-  flex-direction: column;
-  font-size: 20px;
+  flex-direction:row;
+  font-size: 15px;
+  align-items: center;
 }
 .weather div span{
-  font-size: 30px;
+  font-size: 20px;
+  display: block;
   font-weight: bolder;
+}
+.weather div img{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }

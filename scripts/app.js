@@ -20,19 +20,35 @@ async function renderWeather(q){
     return;
   }
   let generateHTML = `
-    <div>Temperature &#9728;&#65039;
+    <div class="tile">
+      <img src="images/temperature.png">
+      <div class = "info-w">
+        <p>Temperature</p>
         <span>${result.current.temp_c}&deg;C &#183; ${result.current.temp_f}&deg;F</span>
       </div>
-      <div>Humidity 💧
+    </div>
+    <div class="tile">
+      <img src="images/humidity.png">
+      <div class = "info-w">
+        <p>Humidity</p>
         <span>${result.current.humidity}</span>
       </div>
-      <div>Wind speed 🌫
+    </div>
+    <div class="tile">
+      <img src="images/wind.png">
+      <div class = "info-w">
+        <p>Wind speed</p>
         <span>In kph: ${result.current.wind_kph}</span>
         <span>In mph: ${result.current.wind_mph}</span>
       </div>
-      <div>Weather condition 🌦️
+    </div>
+    <div class="tile">
+      <img src="${result.current.condition.icon}">
+      <div class = "info-w">
+        <p>Weather condition</p>
         <span>${result.current.condition.text}</span>
       </div>
+    </div>
   `;
   document.querySelector('.js-weather')
     .innerHTML = generateHTML;
@@ -44,8 +60,9 @@ async function getTemperature(q){
   try{
   if(!q){
     document.querySelector('.js-error-message')
-      .textContent = 'Please enter the city';
-      return;
+    .textContent = 'Please enter the city';
+
+    return;
   }
   const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${key}&q=${q}`)
   if (!response.ok) {
