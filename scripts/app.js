@@ -14,7 +14,11 @@ searchButton.addEventListener('click',()=>{
 });
 
 async function renderWeather(q){
-  await getTemperature(q);
+  const result = await getTemperature(q);
+  console.log(result);
+  if(result===null){
+    return;
+  }
   let generateHTML = `
     <div>Temperature &#9728;&#65039;
         <span>${result.current.temp_c}&deg;C &#183; ${result.current.temp_f}&deg;F</span>
@@ -36,17 +40,30 @@ async function renderWeather(q){
 
 
 const key = '9e013bfdc4764f13b60134158261107';
-let result = ``;
 async function getTemperature(q){
   try{
+  if(!q){
+    document.querySelector('.js-error-message')
+      .textContent = 'Please enter the city';
+      return;
+  }
   const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${key}&q=${q}`)
   if (!response.ok) {
+    /*console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.ok);*/
     throw new Error(`Response status: ${response.status}`);
   }
-  result = await response.json();
-  console.log(result);
+
+  document.querySelector('.js-error-message').innerHTML = ``;
+
+  return await response.json();
+
 } catch(error){
-  console.error(error.message);
+  //console.log('error')
+  document.querySelector('.js-error-message')
+    .innerHTML = 'City not found!';
+    return null;
 }
 }
 

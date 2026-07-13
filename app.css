@@ -55,12 +55,15 @@ body{
   font-size: 20px;
   box-shadow: 2px 2px 5px grey;
 }
+.error-message{
+  color: red;
+  display: block;
+  padding-left: 10px;
+}
 .search-area{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 20px;
-  
+  display: grid;
+  grid-template-columns: 1fr 50px;
+  column-gap: 20px; 
 }
 .search-button{
   width: 50px;
