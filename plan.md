@@ -12,13 +12,12 @@ Future Features:
 
 - Dark mode
 - Recent searches
-- 5-day forecast
+- ✅5-day forecast
 
 Improvements to do
 - Protect API key
 - ✅Empty search handling
 - ✅Weather Icon (weatherapi returns one)
-- Feels like temperature
-- Pressure, visibility, UV Index
-- Current locatipon button
-- 5-day forecast
+- ✅Feels like temperature
+- ✅Pressure, visibility, UV Index
+- Current location button

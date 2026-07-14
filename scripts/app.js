@@ -1,9 +1,11 @@
 const searchInput = document.querySelector('.js-search-bar');
 const searchButton = document.querySelector('.js-search-button');
-
+const getLocButton = document.querySelector('.js-current-loc');
 searchInput.addEventListener('keydown',(event)=>{
   if(event.key ==='Enter'){
     const q = searchInput.value;
+    document.querySelector('.location')
+    .innerHTML = `Loading...`;
     renderWeather(q);
     searchInput.value = '';
   }
@@ -14,6 +16,31 @@ searchButton.addEventListener('click',()=>{
     renderWeather(q);
     searchInput.value = '';
 });
+
+getLocButton.addEventListener('click',()=>{
+  getLoc();
+})
+
+function getLoc(){
+  function success(position){
+    const latitude = position.coords.latitude;
+    const longtitude = position.coords.longitude;
+    const q = latitude + ',' + longtitude;
+    renderWeather(q);
+  }
+  function error(err) {
+    console.log(err);
+    console.log(err.code);
+    console.log(err.message);
+
+    alert(err.message);
+}
+  if (!navigator.geolocation) {
+    alert("Geolocation is not supported by your browser");
+  }else{
+    navigator.geolocation.getCurrentPosition(success,error);
+  }
+}
 
 async function renderWeather(q){
   const result = await getTemperature(q);
@@ -27,6 +54,11 @@ async function renderWeather(q){
       <div class = "info-w">
         <p>Temperature</p>
         <span>${result.current.temp_c}&deg;C &#183; ${result.current.temp_f}&deg;F</span>
+        <p>Feels like</p>
+        <span style = "
+          font-size: 15px;
+          font-weight: 500; 
+        ">${result.current.feelslike_c}&deg;C &#183; ${result.current.feelslike_f}&deg;F</span>
       </div>
     </div>
     <div class="tile">
@@ -80,8 +112,40 @@ async function renderWeather(q){
       </div>
     </div>
   `;
+  document.querySelector('.location')
+    .innerHTML = `<img class="placeholder" src="images/placeholder.png"></img> ${result.location.name},${result.location.country}`;
   document.querySelector('.js-weather')
     .innerHTML = generateHTML;
+  document.querySelector('.forecast')
+    .style.display = 'flex';
+
+  let forecastHTML = ``;
+  
+  result.forecast.forecastday
+  .forEach((forecast)=>{
+    const weekDay = new Date(forecast.date).toLocaleDateString("en-US",{
+      weekday: "long",
+    });
+  
+    const img = forecast.day.condition.icon;
+    const weather = forecast.day.condition.text;
+    const mint = forecast.day.mintemp_c;
+    const maxt = forecast.day.maxtemp_c;
+
+    forecastHTML += `
+      <div class="forecast-tile">
+          <p>${weekDay}</p>
+          <div>
+            <img src="${img}">
+            <p>${weather}</p>
+          </div>
+          <p>${mint}&deg;/${maxt}&deg;C</p>
+      </div>
+    `;
+  });
+
+  document.querySelector('.js-forecast-container')
+    .innerHTML = forecastHTML;
 }
 
 
@@ -94,11 +158,8 @@ async function getTemperature(q){
 
     return;
   }
-  const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${key}&q=${q}`)
+  const response = await fetch(`http://api.weatherapi.com/v1/forecast.json?key=${key}&q=${q}&days=5`)
   if (!response.ok) {
-    /*console.log(response.status);
-    console.log(response.statusText);
-    console.log(response.ok);*/
     throw new Error(`Response status: ${response.status}`);
   }
 
@@ -107,7 +168,6 @@ async function getTemperature(q){
   return await response.json();
 
 } catch(error){
-  //console.log('error')
   document.querySelector('.js-error-message')
     .innerHTML = 'City not found!';
     return null;
