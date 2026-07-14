@@ -10,7 +10,7 @@ body{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: 120px;
+  height: 90px;
   flex:1;
   position: fixed;
   top: 0;
@@ -38,6 +38,7 @@ body{
 .welcome{
   font-size: 50px;
   font-weight: 500;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 .search{
@@ -46,7 +47,8 @@ body{
   justify-content: center;
   align-items: center; 
   padding: 50px;
-  padding-top: 120px;   
+  padding-top: 75px;  
+  padding-bottom: 5px 
 }
 .search-bar{
   width: 600px;
@@ -80,27 +82,50 @@ body{
 
 .weather{
   border: none;
-  display: grid;
   width: 900px;
+  /*height: 280px;
+  background-color: white ;
+  border-radius: 18px;
+  box-shadow: 0px 1px 5px  rgba(0, 0, 0, 0.3)*/;
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: 20px;
-  row-gap: 50px;
+  row-gap: 20px;
   place-items: center;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; 
+}
+.tile-pre{
+  width: 900px;
+  height: 280px;
+  background-color: white ;
+  border-radius: 18px;
+  box-shadow: 0px 1px 5px  rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 450;
+}
+.weather img.init-image{
+   width: auto;
+   height: 120px;
 }
 .tile{
   border: none;
-  height: 130px;
   width: 200px;
+  height: 130px;
   background-color: white ;
-  border-radius: 10px;
+  border-radius: 18px;
   box-shadow: 0px 1px 5px  rgba(0, 0, 0, 0.3);
   display: flex;
   padding-left: 5px;
   flex-direction:row;
   font-size: 15px;
   align-items: center;
+  
+  
 }
 .weather div span{
   font-size: 20px;
@@ -114,4 +139,7 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
+}
+.info-w p{
+  margin: 5px 0px
 }

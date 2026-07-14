@@ -5,12 +5,14 @@ searchInput.addEventListener('keydown',(event)=>{
   if(event.key ==='Enter'){
     const q = searchInput.value;
     renderWeather(q);
+    searchInput.value = '';
   }
 });
 
 searchButton.addEventListener('click',()=>{
     const q = searchInput.value;
     renderWeather(q);
+    searchInput.value = '';
 });
 
 async function renderWeather(q){
@@ -31,7 +33,7 @@ async function renderWeather(q){
       <img src="images/humidity.png">
       <div class = "info-w">
         <p>Humidity</p>
-        <span>${result.current.humidity}</span>
+        <span>${result.current.humidity}%</span>
       </div>
     </div>
     <div class="tile">
@@ -47,6 +49,34 @@ async function renderWeather(q){
       <div class = "info-w">
         <p>Weather condition</p>
         <span>${result.current.condition.text}</span>
+      </div>
+    </div>
+    <div class="tile">
+      <img src="images/pressure.png">
+      <div class = "info-w">
+        <p>Pressure</p>
+        <span>${result.current.pressure_mb} mb</span>
+      </div>
+    </div>
+    <div class="tile">
+      <img src="images/uv-index.png">
+      <div class = "info-w">
+        <p>UV Index</p>
+        <span>${result.current.uv}</span>
+      </div>
+    </div>
+    <div class="tile">
+      <img src="images/cloud-cover.png">
+      <div class = "info-w">
+        <p>Clouds</p>
+        <span>${result.current.cloud}%</span>
+      </div>
+    </div>
+    <div class="tile">
+      <img src="images/visibility.png">
+      <div class = "info-w">
+        <p>Visibility</p>
+        <span>${result.current.vis_km} km</span>
       </div>
     </div>
   `;

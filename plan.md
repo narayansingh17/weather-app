@@ -17,7 +17,7 @@ Future Features:
 Improvements to do
 - Protect API key
 - ✅Empty search handling
-- Weather Icon (weatherapi returns one)
+- ✅Weather Icon (weatherapi returns one)
 - Feels like temperature
 - Pressure, visibility, UV Index
 - Current locatipon button
